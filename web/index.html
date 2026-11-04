@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Proyecto Kubernetes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Mi Proyecto Kubernetes</h1>
+      <p>Laboratorio desplegado con Kubernetes</p>
+    </header>
+
+    <section class="card">
+      <h2>Estado de la API</h2>
+      <p id="api-status">Comprobando...</p>
+    </section>
+
+    <section class="card">
+      <h2>Agregar tarea</h2>
+      <form id="task-form">
+        <input id="task-name" type="text" placeholder="Escribe una tarea" required>
+        <button type="submit">Agregar</button>
+      </form>
+      <p id="form-message"></p>
+    </section>
+
+    <section class="card">
+      <h2>Mis tareas</h2>
+      <ul id="task-list"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

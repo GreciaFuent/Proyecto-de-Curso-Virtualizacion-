@@ -1,0 +1,23 @@
+# Bases de datos y respaldos
+*.db
+*.sqlite
+*.sqlite3
+*.backup
+*.bak
+
+# Secretos y credenciales
+.env
+.env.*
+*.secret
+secrets/
+credentials/
+
+# Archivos temporales
+*.log
+*.tmp
+__pycache__/
+*.pyc
+
+# Archivos locales de Kubernetes
+kubeconfig
+monitoring/grafana-migracion.yaml
