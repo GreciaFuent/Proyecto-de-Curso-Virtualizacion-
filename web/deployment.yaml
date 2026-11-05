@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mi-web
+  namespace: default
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: mi-web
@@ -12,10 +13,12 @@ spec:
       labels:
         app: mi-web
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: mi-web
-          image: localhost/mi-web:1.0
-          imagePullPolicy: Never
+          image: ghcr.io/greciafuent/mi-web:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           resources:

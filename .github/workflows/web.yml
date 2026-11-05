@@ -1,0 +1,66 @@
+
+name: Build and Deploy Web
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'web/**'
+      - '.github/workflows/web.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+concurrency:
+  group: gitops-deploy
+  cancel-in-progress: false
+
+jobs:
+  build-web:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate image tag
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Web
+        uses: docker/build-push-action@v6
+        with:
+          context: ./web
+          push: true
+          tags: ghcr.io/greciafuent/mi-web:${{ env.SHORT_SHA }}
+
+      - name: Update Kubernetes manifest
+        run: |
+          sed -i "s|image: ghcr.io/greciafuent/mi-web:.*|image: ghcr.io/greciafuent/mi-web:${SHORT_SHA}|" web/deployment.yaml
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add web/deployment.yaml
+          if ! git diff --cached --quiet; then
+            git commit -m "ci(web): update image to ${SHORT_SHA}"
+            for attempt in 1 2 3; do
+              git fetch origin main
+              if git rebase origin/main && git push origin HEAD:main; then
+                break
+              fi
+              if [ "$attempt" -eq 3 ]; then
+                exit 1
+              fi
+              sleep 3
+            done
+          fi

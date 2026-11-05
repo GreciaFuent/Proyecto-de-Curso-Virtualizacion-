@@ -13,10 +13,12 @@ spec:
       labels:
         app: mi-api
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: mi-api
-          image: localhost/mi-api:1.1
-          imagePullPolicy: Never
+          image: ghcr.io/greciafuent/mi-api:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           volumeMounts:
