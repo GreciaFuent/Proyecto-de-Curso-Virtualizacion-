@@ -28,7 +28,7 @@ spec:
 
       containers:
         - name: mi-api
-          image: ghcr.io/greciafuent/mi-api:80f65af
+          image: ghcr.io/greciafuent/mi-api:1c4b089
           imagePullPolicy: Always
 
           ports:
