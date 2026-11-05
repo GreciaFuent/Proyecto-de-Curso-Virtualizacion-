@@ -3,27 +3,41 @@ kind: Deployment
 metadata:
   name: mi-api
   namespace: default
+
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: mi-api
+
   template:
     metadata:
       labels:
         app: mi-api
+
     spec:
       imagePullSecrets:
         - name: ghcr-secret
+
       containers:
         - name: mi-api
           image: ghcr.io/greciafuent/mi-api:31bf076
           imagePullPolicy: Always
+
+          env:
+            - name: API_MENSAJE
+              valueFrom:
+                secretKeyRef:
+                  name: doppler-prueba
+                  key: API_MENSAJE
+
           ports:
             - containerPort: 8000
+
           volumeMounts:
             - name: datos
               mountPath: /data
+
           resources:
             requests:
               memory: "80Mi"
@@ -31,6 +45,7 @@ spec:
             limits:
               memory: "180Mi"
               cpu: "300m"
+
       volumes:
         - name: datos
           persistentVolumeClaim:

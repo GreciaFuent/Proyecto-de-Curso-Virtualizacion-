@@ -1,6 +1,8 @@
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 import sqlite3
+import os
 
 app = FastAPI(
     title="Mi Proyecto Kubernetes",
@@ -35,7 +37,10 @@ class Tarea(BaseModel):
 @app.get("/")
 def inicio():
     return {
-        "mensaje": "¡Mi API está funcionando!",
+        "mensaje": os.getenv(
+            "API_MENSAJE",
+            "¡Mi API está funcionando!"
+        ),
         "proyecto": "Laboratorio Kubernetes"
     }
 
@@ -57,7 +62,10 @@ def crear_tarea(tarea: Tarea):
             "INSERT INTO tareas (nombre) VALUES (?)",
             (tarea.nombre,)
         )
-        return {"id": cursor.lastrowid, "nombre": tarea.nombre}
+        return {
+            "id": cursor.lastrowid,
+            "nombre": tarea.nombre
+        }
 
 
 @app.get("/tareas")
@@ -71,5 +79,3 @@ def listar_tareas():
         {"id": fila[0], "nombre": fila[1]}
         for fila in filas
     ]
-
-# Prueba de despliegue automatico CI/CD de mi-api
