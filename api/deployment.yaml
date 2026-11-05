@@ -17,7 +17,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: mi-api
-          image: ghcr.io/greciafuent/mi-api:dd49cf5
+          image: ghcr.io/greciafuent/mi-api:31bf076
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
