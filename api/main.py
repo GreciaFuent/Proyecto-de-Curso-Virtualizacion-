@@ -71,3 +71,5 @@ def listar_tareas():
         {"id": fila[0], "nombre": fila[1]}
         for fila in filas
     ]
+
+# Prueba de despliegue automatico CI/CD de mi-api
