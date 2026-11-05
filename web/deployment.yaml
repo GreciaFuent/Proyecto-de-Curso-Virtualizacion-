@@ -4,7 +4,7 @@ metadata:
   name: mi-web
   namespace: default
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: mi-web
