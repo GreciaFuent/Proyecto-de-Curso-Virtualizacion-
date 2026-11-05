@@ -21,7 +21,7 @@ spec:
 
       containers:
         - name: mi-api
-          image: ghcr.io/greciafuent/mi-api:31bf076
+          image: ghcr.io/greciafuent/mi-api:80f65af
           imagePullPolicy: Always
 
           env:
