@@ -29,6 +29,14 @@ jobs:
       - name: Generate image tag
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> "$GITHUB_ENV"
 
+      - name: Install Doppler CLI
+        uses: dopplerhq/cli-action@v4
+
+      - name: Verify Doppler connection
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+        run: doppler secrets --only-names > /dev/null
+
       - name: Login to GHCR
         uses: docker/login-action@v3
         with:
