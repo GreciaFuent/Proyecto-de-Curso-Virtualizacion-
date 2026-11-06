@@ -104,7 +104,7 @@ def health():
             with conn.cursor() as cursor:
                 cursor.execute("SELECT 1")
                 cursor.fetchone()
-        return {"status": "ok", "database": "connected"}
+        return {"status": "okas", "database": "connected"}
     except psycopg2.Error:
         raise HTTPException(
             status_code=503,
