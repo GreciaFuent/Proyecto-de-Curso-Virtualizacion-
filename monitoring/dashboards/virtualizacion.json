@@ -112,7 +112,7 @@
           "refId": "A"
         }
       ],
-      "title": "espacio disponible",
+      "title": "Available Disk Space",
       "type": "timeseries"
     },
     {
@@ -300,7 +300,7 @@
           "refId": "A"
         }
       ],
-      "title": "Memoria utilizada (%)",
+      "title": "Memory Usage (%)",
       "type": "timeseries"
     },
     {
@@ -394,7 +394,7 @@
           "refId": "A"
         }
       ],
-      "title": "Tiempo activo",
+      "title": "Uptime",
       "type": "timeseries"
     },
     {
@@ -488,7 +488,7 @@
           "refId": "A"
         }
       ],
-      "title": "CPU de Prometheus",
+      "title": "Prometheus CPU",
       "type": "timeseries"
     },
     {
@@ -586,12 +586,12 @@
           "refId": "A"
         }
       ],
-      "title": "Memoria de Prometheus",
+      "title": "Prometheus Memory",
       "type": "timeseries"
     },
     {
       "id": 7,
-      "title": "Solicitudes por segundo - API",
+      "title": "API Requests per Second",
       "type": "timeseries",
       "datasource": {
         "type": "prometheus",
@@ -620,7 +620,7 @@
     },
     {
       "id": 8,
-      "title": "Logs de API y Web",
+      "title": "API and Web Logs",
       "type": "logs",
       "datasource": {
         "type": "loki",
@@ -647,7 +647,7 @@
     },
     {
       "id": 9,
-      "title": "Réplicas activas - API y Web",
+      "title": "Active Replicas - API and Web",
       "type": "timeseries",
       "datasource": {
         "type": "prometheus",
@@ -689,7 +689,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Virtualizacion",
+  "title": "Virtualization",
   "uid": "adtvv68",
   "weekStart": ""
 }
