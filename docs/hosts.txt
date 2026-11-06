@@ -1,0 +1,7 @@
+# KubeLab - Grupo 4
+# IP de MetalLB / Traefik
+192.168.1.160 app.grupo4.lab
+192.168.1.160 api.grupo4.lab
+192.168.1.160 grafana.grupo4.lab
+192.168.1.160 prometheus.grupo4.lab
+192.168.1.160 argocd.grupo4.lab
