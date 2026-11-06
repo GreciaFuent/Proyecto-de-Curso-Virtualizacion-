@@ -30,7 +30,7 @@ spec:
 
       containers:
         - name: mi-web
-          image: ghcr.io/greciafuent/mi-web:6753b7c
+          image: ghcr.io/greciafuent/mi-web:9171e1f
           imagePullPolicy: Always
 
           ports:
