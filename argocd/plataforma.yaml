@@ -12,6 +12,7 @@ spec:
     path: plataforma
     directory:
       recurse: true
+      exclude: 'metallb/*'
   destination:
     server: https://kubernetes.default.svc
     namespace: metallb-system
