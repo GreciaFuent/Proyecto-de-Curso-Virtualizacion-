@@ -65,3 +65,29 @@ li {
 #api-status {
   font-weight: bold;
 }
+
+
+/* Lista de tareas: botones alineados a la derecha */
+
+#task-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+#task-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+#task-list li span {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+#task-list li button {
+    flex-shrink: 0;
+}
