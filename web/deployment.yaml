@@ -32,6 +32,7 @@ spec:
         - name: mi-web
           image: ghcr.io/greciafuent/mi-web:99636bd
           imagePullPolicy: Always
+
           ports:
             - containerPort: 80
 
@@ -42,3 +43,21 @@ spec:
             limits:
               memory: "96Mi"
               cpu: "200m"
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3
