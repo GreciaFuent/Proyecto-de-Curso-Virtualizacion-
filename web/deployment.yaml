@@ -16,7 +16,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: mi-web
-          image: ghcr.io/greciafuent/mi-web:b27f7e0
+          image: ghcr.io/greciafuent/mi-web:6c4deb3
           imagePullPolicy: Always
           ports:
             - containerPort: 80
