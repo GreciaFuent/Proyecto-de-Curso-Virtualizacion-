@@ -30,7 +30,7 @@ spec:
             - name: GF_SECURITY_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: grafana-admin
+                  name: grafana-admin-doppler
                   key: admin-password
             - name: GF_USERS_ALLOW_SIGN_UP
               value: "false"
