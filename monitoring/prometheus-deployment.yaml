@@ -1,3 +1,4 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5,6 +6,8 @@ metadata:
   namespace: monitoring
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: prometheus
@@ -14,7 +17,13 @@ spec:
         app: prometheus
     spec:
       nodeSelector:
-        kubernetes.io/hostname: kube-control
+        kubernetes.io/hostname: kube-worker2
+
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+
       containers:
         - name: prometheus
           image: prom/prometheus:v3.8.1
@@ -24,9 +33,11 @@ spec:
             - "--storage.tsdb.retention.time=24h"
             - "--storage.tsdb.retention.size=300MB"
             - "--web.enable-lifecycle"
+
           ports:
             - name: web
               containerPort: 9090
+
           resources:
             requests:
               memory: 128Mi
@@ -34,15 +45,17 @@ spec:
             limits:
               memory: 256Mi
               cpu: 300m
+
           volumeMounts:
             - name: config
               mountPath: /etc/prometheus
             - name: storage
               mountPath: /prometheus
+
       volumes:
         - name: config
           configMap:
             name: prometheus-config
         - name: storage
-          emptyDir:
-            sizeLimit: 350Mi
+          persistentVolumeClaim:
+            claimName: prometheus-datos
