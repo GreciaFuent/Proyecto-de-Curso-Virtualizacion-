@@ -1,3 +1,4 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,14 +13,28 @@ spec:
       labels:
         app: mi-web
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - kube-worker1
+                      - kube-worker2
+                      - kube-worker3
+
       imagePullSecrets:
         - name: ghcr-secret
+
       containers:
         - name: mi-web
           image: ghcr.io/greciafuent/mi-web:6c4deb3
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+
           resources:
             requests:
               memory: "32Mi"
