@@ -56,4 +56,3 @@ spec:
             type: Directory
         - name: positions
           emptyDir: {}
-
