@@ -1,5 +1,5 @@
-# KubeLab - Grupo 4
-# IP de MetalLB / Traefik
+# KubeLab - Group 4
+# MetalLB / Traefik IP address
 192.168.1.160 app.grupo4.lab
 192.168.1.160 api.grupo4.lab
 192.168.1.160 grafana.grupo4.lab

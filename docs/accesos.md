@@ -1,38 +1,37 @@
-# Accesos al laboratorio — Grupo 4
+# Laboratory Access Guide — Group 4
 
-## Requisitos de conexión
+## Network Access
 
-El laboratorio utiliza Tailscale para permitir acceso remoto a la red
-192.168.1.0/24.
+The laboratory uses Tailscale to provide remote access to the
+192.168.1.0/24 network.
 
-El servidor Proxmox anuncia la ruta de subred mediante Tailscale.
-El acceso remoto requiere autorización para utilizar dicha ruta.
+The Proxmox server advertises the subnet route through Tailscale.
+Remote users must be authorized to access this route.
 
-Los dominios del proyecto están documentados en docs/hosts.txt
-y apuntan a la IP 192.168.1.160 de MetalLB / Traefik.
+Service domains are listed in docs/hosts.txt and point to
+192.168.1.160, the MetalLB / Traefik IP address.
 
-## Servicios disponibles
+## Services
 
-| Servicio | Dirección | Usuario del profesor | Permisos |
+| Service | Address | Instructor Account | Permissions |
 |---|---|---|---|
-| Aplicación web | http://app.grupo4.lab | No requiere cuenta | Uso de la aplicación |
-| API | http://api.grupo4.lab/health | No requiere cuenta | Consulta |
+| Web application | http://app.grupo4.lab | Not required | Application access |
+| API | http://api.grupo4.lab/health | Not required | Read access |
 | Grafana | http://grafana.grupo4.lab | profesor_lectura | Viewer |
-| Prometheus | http://prometheus.grupo4.lab | No requiere cuenta | Consulta |
-| Argo CD | https://argocd.grupo4.lab | profesor_lectura | Readonly |
+| Prometheus | http://prometheus.grupo4.lab | Not required | Read access |
+| Argo CD | https://argocd.grupo4.lab | profesor_lectura | Read-only |
 | PostgreSQL | 192.168.1.160:5432 | profesor_lectura | SELECT |
 
 ## PostgreSQL
 
-Base de datos: tareasdb
+Database: tareasdb
 
-Permisos del profesor: CONNECT, USAGE y SELECT sobre las tablas
-existentes del esquema public.
+The instructor account has CONNECT, USAGE, and SELECT permissions
+on existing tables in the public schema.
 
-## Seguridad
+## Security
 
-Las contraseñas se entregan por un canal privado.
-No se almacenan contraseñas en el repositorio Git.
+Passwords are delivered through a private channel.
+Credentials must not be committed to the Git repository.
 
-Las cuentas de Grafana, Argo CD y PostgreSQL utilizan
-contraseñas independientes.
+Grafana, Argo CD, and PostgreSQL use separate passwords.
